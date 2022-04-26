@@ -24,3 +24,11 @@ Una plataforma que usa git, aquí se puede administrar, descargar y organizar to
  * Trabajar directamente en el PC, descargando git y usando la consola para depués hacer push de la parte de cada quien.
 Realmente así es como se trabaja en la vida real, así que personalmente les recomiendo hacerlo así, pero pues para esto no es necesario porque sí es algo de texto.
  * Aquí mismo en el repositorio aparecen botones para crear archivos o subir los existentes, así que también le pueden hacer así; creando y editando el archivo en github o haciendo, editando y probando el archivo en su computadora y depués subir los cambios.
+
+3. Si lo hacen aquí mismo en github, al momento de subir el archivo o en el mismo editor, hasta abajo sale una parte donde dice " Commit changes ".
+
+En el primer cuadro le ponen algo general: "se actualizó el script del clima", "se añadió el script de las imágenes", o algo así, para saber qué fue lo que se hizo.
+
+Y en el de abajo le pueden poner más detallado lo que se hizo.
+
+Ya depués de eso le dan en "commit changes", en la parte de las ramas le dejan que se haga el commit en main, así como está por default.
