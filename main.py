@@ -1,5 +1,5 @@
 from io import open
-from sqlite3 import DatabaseError
+import re
 import getWeb
 
 
@@ -18,11 +18,32 @@ def getLinks():
     return links
 
 
+def addLinks():
+    pattern = "([a-z]+.[a-zA-Z0-9]+.[a-z]{2,}/*)"
+    newLink = input("Escriba el link a agregar: ")
+    check = re.findall(pattern, newLink)
+    if not check:
+        print("Formato de link erróneo. ")
+        addLinks()
+    else:
+        with open("links.txt", "w") as fileLinks:
+            fileLinks.write("\n".join(newLink))
+
+    return getLinks()
+
+
 def main():
+    links = getLinks()
+    print("Esto son los link a utilizar: ")
+    print(links)
+    x = input("¿Desea agregar[s/N]?: ")
+    if x == "S" or x == "s":
+        links = addLinks()
+
     soups = []
     linkDB = {}
 
-    links = getLinks()
+    
     for link in links:
         soups.append(getWeb.get(link))
 
