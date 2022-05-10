@@ -1,6 +1,21 @@
 from io import open
 import re
 import getWeb
+from os import link, remove, listdir
+
+
+def dictionary(links):
+    soups = []
+    linkDB = {}
+
+    
+    for link in links:
+        soups.append(getWeb.get(link))
+
+    for i in range(len(links)):
+        linkDB[links[i]] = soups[i]
+    
+    return linkDB
 
 
 def getLinks(links):
@@ -42,18 +57,24 @@ def main():
         print("Esto son los link a utilizar: ")
         print("\n")
         print(links)
+    else:
+        pass
 
-
-    soups = []
-    linkDB = {}
-
+    linkDB = dictionary(links)
     
-    for link in links:
-        soups.append(getWeb.get(link))
+    #<---- Fin -------------->
 
-    for i in range(len(links)):
-        linkDB[links[i]] = soups[i]
+    ls = listdir()
+    for i in ls:
+        match = re.findall("(\w+.xlsx)", i)
+        if match:
+            xlxsName = match[0][0]
 
+    x = input(f"¿Desea eliminar el archivo {xlxsName}? [s/N]: ")
+    if x == "S" or x == "s":
+        remove(xlxsName)
+    else:
+        pass
 
 
 if __name__ == "__main__":
