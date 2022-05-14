@@ -47,10 +47,11 @@ def main():
         pass
     
     #Buscar link para noticias
+    newsUrl = []
     for link in links:
         match = re.findall("(noticias)", link)
         if match:
-            newsUrl = match[0][0]
+            newsUrl.append(match[0][0])
 
     #Buscar las noticas
     news = []

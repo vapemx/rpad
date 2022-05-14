@@ -28,4 +28,7 @@ ws["B9"].value = "Fecha"
 ws["C9"].value = "Temp. Min."
 ws["D9"].value = "Temp. Max."
 
+ws["E1"].value = "Noticias."
+ws["E2"].append = news
+
 wb.save("info.xlsx")
