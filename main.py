@@ -1,21 +1,7 @@
 from io import open
 import re
-import getWeb
+import scrapping
 from os import link, remove, listdir
-
-
-def dictionary(links):
-    soups = []
-    linkDB = {}
-
-    
-    for link in links:
-        soups.append(getWeb.get(link))
-
-    for i in range(len(links)):
-        linkDB[links[i]] = soups[i]
-    
-    return linkDB
 
 
 def getLinks(links):
@@ -31,7 +17,7 @@ def getLinks(links):
 
 
 def addLinks(links):
-    pattern = "(http[s]*://[a-z]+.[a-zA-Z0-9]+.[a-z]{2,}/*)"
+    pattern = "(http[s]?://\w+.\w+.\w{2,}/*)"
     newLink = input("Escriba el link a agregar con prefijo http al inicio: ")
     check = re.findall(pattern, newLink)
     if not check:
@@ -59,11 +45,22 @@ def main():
         print(links)
     else:
         pass
-
-    linkDB = dictionary(links)
     
-    #<---- Fin -------------->
+    #Buscar link para noticias
+    for link in links:
+        match = re.findall("(noticias)", link)
+        if match:
+            newsUrl = match[0][0]
 
+    #Buscar las noticas
+    news = []
+    for link in newsUrl:
+        news.append(scrapping.titulares(link))
+
+
+
+
+    #Fin: Se le pregunta al usuario si quiere eliminar excel generado
     ls = listdir()
     for i in ls:
         match = re.findall("(\w+.xlsx)", i)

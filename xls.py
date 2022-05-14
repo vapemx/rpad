@@ -2,9 +2,10 @@
 De toda la información obtenida de scrapping y weather, 
 la vamos a tener en main, y main se la va a pasar a xls para que la mande a excel
 '''
-import openpyxl
+import openpyxl as xl
 
-wb = Workbook()
+
+wb = xl.workbook()
 ws = wb.acrtive
 
 ws["A1"].value = "Nombre: "
@@ -20,7 +21,11 @@ ws["B5"].value = podiums
 ws["A6"].value = "Victorias: "
 ws["B6"].value = victories
 ws["A7"].value = "Años en F1: "
-ws["B5"].value = years
+ws["B7"].value = years
 
+ws["A9"].value = "Proximos 3 eventos"
+ws["B9"].value = "Fecha"
+ws["C9"].value = "Temp. Min."
+ws["D9"].value = "Temp. Max."
 
 wb.save("info.xlsx")
