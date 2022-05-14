@@ -37,8 +37,8 @@ def main():
     print("\n")
     print(links)
     print("\n")
-    x = input("¿Desea agregar[s/N]?: ")
-    if x == "S" or x == "s":
+    x = input("¿Desea agregar[s/N]?: ").lowercase()
+    if x == "s":
         links = addLinks(links)
         print("Esto son los link a utilizar: ")
         print("\n")
