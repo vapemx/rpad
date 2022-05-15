@@ -39,8 +39,8 @@ def main():
     print("\n")
     print(links)
     print("\n")
-    x = input("¿Desea agregar[s/N]?: ").lowercase()
-    if x == "s":
+    x = input("¿Desea agregar[s/N]?: ")
+    if x == "s" or x == "S":
         links = addLinks(links)
         print("Esto son los link a utilizar: ")
         print("\n")
@@ -48,6 +48,9 @@ def main():
     else:
         pass
     
+    print("\nBuscando información y generando archivos.")
+    print("Por favor, espere.")
+
     #Buscar links info
     for link in links:
         match = re.findall("(wikipedia)", link)
@@ -73,26 +76,26 @@ def main():
     for link in links:
         match = re.findall("(noticias)", link)
         if match:
-            newsUrl = match[0][0]
+            newsUrl = link
 
     #Descargamos las imágenes
     scrapping.images(newsUrl)
 
     #Buscar las noticas
-    news = []
-    for link in newsUrl:
-        news.append(scrapping.titulares(link))
+    news = scrapping.titulares(newsUrl)
 
 
     #Creamos el archivo de excel
     xls.createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, news)
+
+    print("\nPrograma ejecutado satisfactoriamente.\n")
 
     #Fin: Se le pregunta al usuario si quiere eliminar excel generado
     ls = listdir()
     for i in ls:
         match = re.findall("(\w+.xlsx)", i)
         if match:
-            xlxsName = match[0][0]
+            xlxsName = i
 
     x = input(f"¿Desea eliminar el archivo {xlxsName}? [s/N]: ")
     if x == "S" or x == "s":

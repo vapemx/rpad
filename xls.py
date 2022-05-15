@@ -1,17 +1,20 @@
-import openpyxl as xl
+from openpyxl import Workbook
 
 def createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, news):
-    wb = xl.workbook()
-    ws = wb.acrtive
+    wb = Workbook()
+    ws = wb.active
 
     ws["A1"].value = "Nombre: "
-    ws["B2"].value = name
+    ws["B1"].value = name
     ws["A2"].value = "Edad: "
     ws["B2"].value = age
     ws["A3"].value = "Lugar de nacimiento: "
     ws["B3"].value = bornPlace
     ws["A4"].value = "Redes sociales: "
-    ws["B4"].value = socialMedia
+    socialPrint = ""
+    for social in socialMedia:
+        socialPrint.join("; "+social) 
+    ws["B4"].value = socialPrint
     ws["A5"].value = "Podios: "
     ws["B5"].value = podiums
     ws["A6"].value = "Victorias: "
@@ -20,7 +23,9 @@ def createxls(name, age, bornPlace, socialMedia, podiums, victories, years, next
     ws["B7"].value = years
 
     ws["A9"].value = "Proximos eventos"
-    ws["A10"].value = nextevents
+    ws["A10"].value = nextevents[0]
+    ws["A11"].value = nextevents[3]
+    ws["A12"].value = nextevents[4]
     ws["B9"].value = "Temp. Min."
     ws["C9"].value = "Temp. Max."
 
