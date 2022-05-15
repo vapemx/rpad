@@ -46,6 +46,15 @@ def main():
     else:
         pass
     
+    #Buscar links info
+    for link in links:
+        match = re.findall("wikipedia", link)
+        if match:
+            wikiURL = link
+    
+    #Buscamos la info
+    name, age, bornPlace, podiums, victories, years = scrapping.personal_info(wikiURL)
+
     #Buscar link para noticias
     newsUrl = []
     for link in links:
