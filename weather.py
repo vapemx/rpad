@@ -26,21 +26,21 @@ print()
 print(f"The code of the request is: {page.status_code}")
 
 #Convertimos la cadena JSON obtenida en un diccionario de Python utilizando el método json.loads()
-weatherData = json.loads(page.content)
+Clima_INFO = json.loads(page.content)
 
 #Buscaremos en todo el diccionario obtenido en el paso anterior
-for x, y in weatherData.items():
+for x, y in Clima_INFO.items():
     #Buscamos donde comienza la información de temperaturas de cada día, esto se sabe pues 
     #Cada día diferente inicia con la clave "daily"
     if x == "daily":
         
         #Damos el rango para poder imprimir los días que buscamos, en este caso buscamos del 20 al 22 de Mayo
-        for i in y[5:10]:
-            fecha = int(i['dt'])
+        for i in y[1:5]:
+            Fecha = int(i['dt'])
             #El metodo datetime obtiene la fecha actual, y el metodo strftime le dará formato a dicha fecha, pues 
             #Convierte una tupla generada en una cadena, que será nuestra fecha en formato aaaa/mm/dd
-            dia = datetime.utcfromtimestamp(fecha).strftime("%Y-%m-%d")
-            Dias.append(dia)
+            Actual = datetime.utcfromtimestamp(Fecha).strftime("%Y-%m-%d")
+            Dias.append(Actual)
             #Key representa la parte del día que se esta buscando, ejemplo: Morning, Evening, Night, por eso 
             #se añadiran a la lista listakey que teniamos al principio, la cual contendrá dichas etiquetas 
             #que serán vaciadas en el excel más adelante
