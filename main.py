@@ -48,7 +48,7 @@ def main():
     
     #Buscar links info
     for link in links:
-        match = re.findall("wikipedia", link)
+        match = re.findall("(wikipedia)", link)
         if match:
             wikiURL = link
     
@@ -57,6 +57,15 @@ def main():
 
     #Buscamos sus RRSS
     redes = scrapping.redes(wikiURL)
+
+    #Buscamos link del calendario
+    for link in links:
+        match = re.findall("(calendar)", link)
+        if match:
+            calendarURL = link
+
+    #Buscamos los siguientes eventos
+    nextevents = scrapping.event(calendarURL)
 
     #Buscar link para noticias e imágenes
     for link in links:
