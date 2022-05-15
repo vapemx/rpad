@@ -67,4 +67,10 @@ print(Temperaturas)
 print("---------------")
 print(f"Los días obtenidos son:  {Dias}")
 print("---------------")
-input()
+
+temp_max_min = {Dias[0]:[Temperaturas[1], Temperaturas[2]], 
+Dias[1]:[Temperaturas[7], Temperaturas[8]], 
+Dias[2]:[Temperaturas[13], Temperaturas[14]],
+Dias[3]:[Temperaturas[19], Temperaturas[20]]}
+
+print(temp_max_min)
