@@ -141,3 +141,27 @@ def redes(url):
       social_media.append(link)
 
   return social_media
+
+
+def event(url):
+    webpage_response = requests.get(url)
+    webpage = webpage_response.content
+
+    soup = BeautifulSoup(webpage, "html.parser")
+    race = str(soup.find(string="Gran Premio de España"))
+    nextevent = soup.find_all(class_="w-1/2 py-4 pl-5")[0:4]
+    raw = []
+    for z in nextevent:
+        raw.append(str(z))
+
+    nl = []
+    for x in raw:
+        nl.append(x.split(">")[1].split("<"))
+
+    events = []
+    for i in range(0,4):
+        events.append(nl[i][0])
+
+    events.append(race)
+    
+    return events

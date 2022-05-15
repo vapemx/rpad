@@ -56,7 +56,7 @@ def main():
     name, age, bornPlace, podiums, victories, years = scrapping.personal_info(wikiURL)
 
     #Buscamos sus RRSS
-    redes = scrapping.redes(wikiURL)
+    socialMedia = scrapping.redes(wikiURL)
 
     #Buscamos link del calendario
     for link in links:
