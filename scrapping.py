@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import os
 from datetime import date
 
 
@@ -67,7 +68,7 @@ def personal_info(url):
                 match = re.findall("(\d{4})", x)
                 if match:
                     active = int(match[0])
-                    years = today.year - active
+                    years = (today.year - active)+1
                     years = str(years)
                     
         matchPodiums = re.findall(">Podios<", element)
@@ -79,3 +80,61 @@ def personal_info(url):
             victorias = element.split("\n")[1].split("<")[0]            
 
     return name, bornDate, bornPlace, podiums, victorias, years
+
+
+def images(url):
+    path = "Imagenes_Checo_Perez"
+    os.makedirs(path, exist_ok=True)
+
+    webpage_response = requests.get(url)
+    webpage = webpage_response.content
+    soup = BeautifulSoup(webpage, "html.parser")
+
+    links = []
+    patron_img = '(?<=src=")(https.*?)(?=")'
+    imagenes_links = soup.find_all("img")
+    for img in imagenes_links:
+        img = str(img)
+        link = re.findall(patron_img, img)
+        links.append(link[0])
+
+    del links[:9]
+    links_to_download = links[:3]
+
+    j = 1
+    for link in links_to_download:
+        image_downloading = requests.get(link)
+        save_into = os.path.join(path, "image"+str(j)+".jpg") 
+        file = open(save_into, "wb")
+        file.write(image_downloading.content)
+        file.close()
+        j += 1
+    return "Descarga completa. "
+
+
+def redes(url):
+    redes = []
+    raw = []
+    webpage_response = requests.get(url)
+    webpage = webpage_response.content
+
+    soup = BeautifulSoup(webpage, "html.parser")
+    socialmedia = soup.find_all("a", string="Sergio Pérez")
+    socialmedia = list(socialmedia)
+    for z in socialmedia:
+        raw.append(str(z))
+
+    for find in raw:
+        matchTw = re.findall("(https://twitter.com/\w+)", find)
+        if matchTw:
+            redes.append(matchTw[0])
+        
+        matchIg = re.findall("(//www.instagram.com/\w+)", find)
+        if matchIg:
+            redes.append(matchIg[0])
+    
+        matchFb = re.findall("(https://www.facebook.com/\w+)", find)
+        if matchFb:
+            redes.append(matchFb[0])
+
+    return redes

@@ -55,19 +55,22 @@ def main():
     #Buscamos la info
     name, age, bornPlace, podiums, victories, years = scrapping.personal_info(wikiURL)
 
-    #Buscar link para noticias
-    newsUrl = []
+    #Buscamos sus RRSS
+    redes = scrapping.redes(wikiURL)
+
+    #Buscar link para noticias e imágenes
     for link in links:
         match = re.findall("(noticias)", link)
         if match:
-            newsUrl.append(match[0][0])
+            newsUrl = match[0][0]
+
+    #Descargamos las imágenes
+    scrapping.images(newsUrl)
 
     #Buscar las noticas
     news = []
     for link in newsUrl:
         news.append(scrapping.titulares(link))
-
-
 
 
     #Fin: Se le pregunta al usuario si quiere eliminar excel generado
