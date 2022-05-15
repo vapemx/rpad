@@ -2,6 +2,7 @@ from io import open
 from os import link, remove, listdir
 import re
 import scrapping
+import weather
 import xls
 
 
@@ -84,9 +85,11 @@ def main():
     #Buscar las noticas
     news = scrapping.titulares(newsUrl)
 
+    #Obtenemos las temperaturas
+    temp_max_min = weather.getWeather()
 
     #Creamos el archivo de excel
-    xls.createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, news)
+    xls.createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, temp_max_min, news)
 
     print("\nPrograma ejecutado satisfactoriamente.\n")
 

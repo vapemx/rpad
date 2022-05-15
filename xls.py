@@ -2,7 +2,7 @@ from openpyxl import Workbook
 from os import remove, listdir
 import re
 
-def createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, news):
+def createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, temp, news):
     ls = listdir()
     for i in ls:
         match = re.findall("(\w+.xlsx)", i)
@@ -35,7 +35,13 @@ def createxls(name, age, bornPlace, socialMedia, podiums, victories, years, next
     ws["A13"].value = nextevents[3]
     ws["A14"].value = nextevents[4]
     ws["B11"].value = "Temp. Min."
+    ws["B12"].value = temp.get("d1")[1]
+    ws["B13"].value = temp.get("d2")[1]
+    ws["B14"].value = temp.get("d3")[1]
     ws["C11"].value = "Temp. Max."
+    ws["C12"].value = temp.get("d1")[0]
+    ws["C13"].value = temp.get("d2")[0]
+    ws["C14"].value = temp.get("d3")[0]
 
     ws["E1"].value = "Noticias."
     ws["E2"].value = news[0]
