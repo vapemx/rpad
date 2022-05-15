@@ -1,7 +1,9 @@
 from io import open
+from os import link, remove, listdir
 import re
 import scrapping
-from os import link, remove, listdir
+import xls
+
 
 
 def getLinks(links):
@@ -81,6 +83,9 @@ def main():
     for link in newsUrl:
         news.append(scrapping.titulares(link))
 
+
+    #Creamos el archivo de excel
+    xls.createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, news)
 
     #Fin: Se le pregunta al usuario si quiere eliminar excel generado
     ls = listdir()

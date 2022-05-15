@@ -25,6 +25,10 @@ def createxls(name, age, bornPlace, socialMedia, podiums, victories, years, next
     ws["C9"].value = "Temp. Max."
 
     ws["E1"].value = "Noticias."
-    ws["E2"].append = news
+    ws["E2"].value = news[0]
+    ws["E3"].value = news[1]
+    ws["E4"].value = news[2]
 
     wb.save("info.xlsx")
+
+    return "Archivo creado con éxito."
