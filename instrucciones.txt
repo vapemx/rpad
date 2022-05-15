@@ -1,42 +1,26 @@
-# Web Scrapping
+Nombre del equipo: rpad
 
-
-###### rpad
-
-
-## Descripción
+#----------------------------DESCRIPCIÓN---------------------------
 El proyecto, que está dividido en 4 programas junto con un archivo de texto el cual contiene los links con los que se va a trabajar, tiene como objetivo buscar información, eventos, imágenes y noticias sobre Sergio Pérez, para después recopilar todo lo anterior en un archivo de excel.
 
-## Instalación
+#----------------------------INSTALACIÓN---------------------------
 Antes de poder pasar a usar los programas es necesario contar con las siguientes librerías y módulos instalados: 
 
-Librerías:
-
+Librerías
 -re
-
 -requests
-
 -json
-
 -openpyxl
 
-Módulos:
-
+Módulos
 -io
-
 -os
-
 -bs4
-
 -datetime
-
-Método de instalación:
-
-`pip install name`
 
 Una vez instalado todo lo anterior, se van importará en los programas y ahora sí se podrá ejecutar todo en orden 
 
-## Uso 
+#-------------------------------USO--------------------------------
 Para ejecutar el programa se debe contar con el archivo links.txt
 El programa principal, que es con el que se trabaja, es *main.py*
 
