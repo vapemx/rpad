@@ -113,28 +113,31 @@ def images(url):
 
 
 def redes(url):
-    redes = []
-    raw = []
-    webpage_response = requests.get(url)
-    webpage = webpage_response.content
-
-    soup = BeautifulSoup(webpage, "html.parser")
-    socialmedia = soup.find_all("a", string="Sergio Pérez")
-    socialmedia = list(socialmedia)
-    for z in socialmedia:
-        raw.append(str(z))
-
-    for find in raw:
-        matchTw = re.findall("(https://twitter.com/\w+)", find)
-        if matchTw:
-            redes.append(matchTw[0])
-        
-        matchIg = re.findall("(//www.instagram.com/\w+)", find)
-        if matchIg:
-            redes.append(matchIg[0])
+  reqs = requests.get(url)
+  soup = BeautifulSoup(reqs.text, 'html.parser')
+ 
+  urls = []
+  social_media = []
+  for link in soup.find_all('a', string="Sergio Pérez"):
+    data = link.get('href')
+    urls.append(data)
     
-        matchFb = re.findall("(https://www.facebook.com/\w+)", find)
-        if matchFb:
-            redes.append(matchFb[0])
+  for link in urls:
+    link=str(link)
+  
+    pattern_fb = "https://www.facebook.com/\w+"
+    busqueda_fb = re.findall(pattern_fb, link)
+    if busqueda_fb:
+      social_media.append(link)
 
-    return redes
+    pattern_tw = "https://twitter.com/\w+"
+    busqueda_tw = re.findall(pattern_tw, link)
+    if busqueda_tw:
+      social_media.append(link)
+    
+    pattern_ig = "//www.instagram.com/\w+"
+    busqueda_ig = re.findall(pattern_ig, link)
+    if busqueda_ig:
+      social_media.append(link)
+
+  return social_media
