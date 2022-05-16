@@ -71,7 +71,7 @@ def main():
             calendarURL = link
 
     #Buscamos los siguientes eventos
-    nextevents = scrapping.event(calendarURL)
+    nextevents, dates = scrapping.event(calendarURL)
 
     #Buscar link para noticias e imágenes
     for link in links:
@@ -89,7 +89,7 @@ def main():
     temp_max_min = weather.getWeather()
 
     #Creamos el archivo de excel
-    xls.createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, temp_max_min, news)
+    xls.createxls(name, age, bornPlace, socialMedia, podiums, victories, years, nextevents, dates, temp_max_min, news)
 
     print("\nPrograma ejecutado satisfactoriamente.\n")
 

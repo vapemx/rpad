@@ -148,8 +148,29 @@ def event(url):
     webpage = webpage_response.content
 
     soup = BeautifulSoup(webpage, "html.parser")
-    race = str(soup.find(string="Gran Premio de España"))
+    race = str(soup.find(class_="text-yellow-600 font-semibold")).split(">")[1].split("<")[0]
+    raced = str(soup.find(class_="w-2/12 text-yellow-600 font-semibold"))
     nextevent = soup.find_all(class_="w-1/2 py-4 pl-5")[0:4]
+    rawdatesFPnQ = soup.find_all(class_="w-1/6")[40:45]
+    
+    check = re.findall("\d+ \w{3}", raced)
+    raced = check
+
+    rawd = []
+    for z in rawdatesFPnQ:
+        rawd.append(str(z))
+
+    datesFPnQ = []
+    for x in rawd:
+        match = re.findall("\d+ \w{3}",x)
+        if match:
+            datesFPnQ.append(match)
+
+    dates = []
+    for i in range(0,3):
+        dates.append(datesFPnQ[i][0])
+    dates.append(raced[2])
+
     raw = []
     for z in nextevent:
         raw.append(str(z))
@@ -164,4 +185,4 @@ def event(url):
 
     events.append(race)
     
-    return events
+    return events, dates
