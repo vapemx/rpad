@@ -25,7 +25,7 @@ def addLinks(links):
     check = re.findall(pattern, newLink)
     if not check:
         print("Formato de link erróneo. ")
-        addLinks()
+        addLinks(links)
     else:
         with open("links.txt", "a") as fileLinks:
             fileLinks.write("\n"+newLink)
